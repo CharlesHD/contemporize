@@ -13,7 +13,7 @@
         (= (:type (first l)) :word) (recur ls
                                            (apply str res (interpose " " (map :cont l))))
         (= (:type (first l)) :ln) (recur ls
-                                        (apply str res (map (fn [x] "\n"))))
+                                        (apply str res (map (fn [x] "\n") l)))
         :else (recur ls res)))))
 
 
