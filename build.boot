@@ -1,6 +1,6 @@
 (set-env!
  :source-paths #{"src"}
- :resource-paths #{"res"}
+ :resource-paths #{"src"}
  :target-path "target"
  :dependencies '[[org.clojure/clojure "1.8.0"]
                  [commons-validator "1.4.1"]])
