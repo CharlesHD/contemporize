@@ -20,7 +20,7 @@
 (defn string-to-words
   [s]
   (-> s
-      (str/replace #"[\.,;\?!]" " ")
+      (str/replace #"[\.,:;\?!]" " ")
       (str/replace #"\n" " \n ")
       (str/replace #" +" " ")
       (str/replace #"^ " "")
