@@ -70,7 +70,6 @@
    []
    poem))
 
-
 (defn mutate-poem-form
   [poem p]
   (println "mutate form with proba " p)
@@ -79,10 +78,9 @@
      (let [test (rand)]
        (cond-> np
          true (conj w)
-         (< test p) (m/add-Ln))))
+         (< test p) (m/add-line))))
    []
    poem))
-
 
 (defn mutate
   [poem probs]

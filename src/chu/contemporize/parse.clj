@@ -1,7 +1,7 @@
 (ns chu.contemporize.parse
   (:require [clojure.string :as str]
-            [chu.contemporize.model :as m]))
-
+            [chu.contemporize.model :as m]
+            [chu.contemporize.mutation :refer [mutate]]))
 
 (defn poem-to-string
   [poem]
@@ -16,15 +16,13 @@
                                         (apply str res (map (fn [x] "\n") l)))
         :else (recur ls res)))))
 
-
 (defn string-to-words
   [s]
   (-> s
       (str/replace #"[\.,:;\?!]" " ")
       (str/replace #"\n" " \n ")
       (str/replace #" +" " ")
-      (str/replace #"^ " "")
-      (str/replace #" $" "")
+      (str/trim)
       (str/split #" ")))
 
 (defn string-to-poem
@@ -34,7 +32,14 @@
     (reduce
      (fn [p w]
        (case w
-         "\n" (m/add-Ln p)
+         "\n" (m/add-line p)
          (m/add-word p (str/lower-case w))))
      poem
      words)))
+
+(defn make
+  [s mutations]
+  (-> s
+      (string-to-poem)
+      (mutate mutations)
+      (poem-to-string)))

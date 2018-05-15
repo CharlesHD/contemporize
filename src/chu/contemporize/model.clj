@@ -11,7 +11,7 @@
          :cont word
          }))
 
-(defn add-Ln
+(defn add-line
   [poem]
   (conj poem
         {:type :ln}))
